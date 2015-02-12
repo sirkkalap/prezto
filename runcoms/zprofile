@@ -100,6 +100,9 @@ if [ -e ~/.zshrc.$(hostname) ]; then
 fi
 
 # Autojump (j fofoofoo)
-[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
-
+if [ -s /usr/share/autojump/autojump.zsh ]; then
+    . /usr/share/autojump/autojump.zsh
+else
+    command -v brew >/dev/null 2>&1 && [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+fi
 
