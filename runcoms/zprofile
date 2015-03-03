@@ -106,3 +106,8 @@ else
     command -v brew >/dev/null 2>&1 && [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 fi
 
+zle -C complete-file complete-word _generic
+zstyle ':completion:complete-file::::' completer _files
+bindkey '^xF' complete-file
+
+zstyle ':completion:*' completer _complete _ignored _files
