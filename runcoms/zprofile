@@ -78,14 +78,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 # Petes customizations
-if [ -e ~/.paths ]; then
-    . ~/.paths
-fi
-
-if [ -e ~/.alias ]; then
-    . ~/.alias
-fi
-
 function svndiff {
   svn diff "$@" | colordiff | less -RFX
 }
