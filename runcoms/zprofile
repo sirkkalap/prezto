@@ -67,11 +67,12 @@ fi
 #
 
 if [[ ! -d "$TMPDIR" ]]; then
-  export TMPDIR="/tmp/$USER"
+  export TMPDIR="/tmp/$LOGNAME"
   mkdir -p -m 700 "$TMPDIR"
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
 if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
@@ -115,4 +116,3 @@ zstyle ':completion:*' completer _complete _ignored _files
 alias rm='nocorrect rm'
 alias cp='nocorrect cp'
 alias mv='nocorrect mv'
-
