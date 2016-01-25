@@ -17,8 +17,8 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
 
 #
@@ -111,3 +111,8 @@ zstyle ':completion:complete-file::::' completer _files
 bindkey '^xF' complete-file
 
 zstyle ':completion:*' completer _complete _ignored _files
+
+alias rm='nocorrect rm'
+alias cp='nocorrect cp'
+alias mv='nocorrect mv'
+
