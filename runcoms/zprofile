@@ -72,19 +72,15 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3df44406b3a7e059f8479d35bf706569087d243
 if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
 # Petes customizations
-if [ -e ~/.paths ]; then
-    . ~/.paths
-fi
-
-if [ -e ~/.alias ]; then
-    . ~/.alias
-fi
-
 function svndiff {
   svn diff "$@" | colordiff | less -RFX
 }
@@ -100,4 +96,22 @@ if [ -e ~/.zshrc.$(hostname) ]; then
 fi
 
 # Autojump (j fofoofoo)
+<<<<<<< HEAD
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+=======
+if [ -s /usr/share/autojump/autojump.zsh ]; then
+    . /usr/share/autojump/autojump.zsh
+else
+    command -v brew >/dev/null 2>&1 && [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+fi
+
+zle -C complete-file complete-word _generic
+zstyle ':completion:complete-file::::' completer _files
+bindkey '^xF' complete-file
+
+zstyle ':completion:*' completer _complete _ignored _files
+
+alias rm='nocorrect rm'
+alias cp='nocorrect cp'
+alias mv='nocorrect mv'
+>>>>>>> c3df44406b3a7e059f8479d35bf706569087d243
