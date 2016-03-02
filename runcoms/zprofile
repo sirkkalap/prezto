@@ -82,6 +82,11 @@ function svndiff {
   svn diff "$@" | colordiff | less -RFX
 }
 
+# Set homes, if set
+if [ -e ~/.paths ]; then
+    . ~/.paths
+fi
+
 # For machines with local home
 if [ -e ~/.zshrc.local ]; then
     . ~/.zshrc.local
@@ -108,3 +113,8 @@ zstyle ':completion:*' completer _complete _ignored _files
 alias rm='nocorrect rm'
 alias cp='nocorrect cp'
 alias mv='nocorrect mv'
+
+# http://tosbourn.com/view-markdown-files-terminal/
+rmd () {
+  pandoc $1 | lynx -stdin
+}
