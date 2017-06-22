@@ -66,6 +66,7 @@ Aliases
   - `_` executes a command as another user (`sudo`).
   - `b` opens the default web browser.
   - `cp` copies files and directories interactively.
+  - `diffu` shorthand for `diff --unified`
   - `e` opens the default editor.
   - `ln` links files and directories interactively.
   - `mkdir` creates directories, including intermediary directories.
@@ -75,6 +76,7 @@ Aliases
   - `pu` changes the directory and pushes the old directory onto the stack
     (`pushd`).
   - `rm` removes files and directories interactively.
+  - `sa` search aliases for a word.
   - `type` displays all the attribute values of a shell parameter.
 
 ### Files and Directories
@@ -103,13 +105,11 @@ Aliases
 
 ### Resource Usage
 
-  - `df` displays free disk space using human readable units.
+  - `df` displays free disk space using human readable units (aliases to `pydf`, if installed).
   - `du` displays disk usage using human readable units.
-  - `top` displays information about processes (aliased to `htop`, if installed).
-  - `topc` displays information about processes sorted by CPU usage (`htop` not
-    installed).
-  - `topm` displays information about processes sorted by RAM usage (`htop` not
-    installed).
+  - `top` displays information about processes.
+  - `topc` displays information about processes sorted by CPU usage.
+  - `topm` displays information about processes sorted by RAM usage.
 
 ### Miscellaneous
 

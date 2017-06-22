@@ -65,16 +65,14 @@ fi
 #
 # Temporary Files
 #
-
-if [[ ! -d "$TMPDIR" ]]; then
-  export TMPDIR="/tmp/$LOGNAME"
-  mkdir -p -m 700 "$TMPDIR"
+#
+if [[ -z "$TMPDIR" ]]; then
+  export TMPDIR="/tmp/zsh-$UID"
 fi
 
-TMPPREFIX="${TMPDIR%/}/zsh"
-
-if [[ ! -d "$TMPPREFIX" ]]; then
-  mkdir -p "$TMPPREFIX"
+if [[ ! -d "$TMPDIR" ]]; then
+  mkdir "$TMPDIR"
+  chmod 700 "$TMPDIR"
 fi
 
 # Petes customizations
