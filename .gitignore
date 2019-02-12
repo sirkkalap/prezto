@@ -2,4 +2,6 @@
 *.zwc.old
 modules/*/cache.zsh
 
+
 .idea
+*.iml
