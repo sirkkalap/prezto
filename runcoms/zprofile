@@ -75,14 +75,18 @@ if [[ ! -d "$TMPDIR" ]]; then
   chmod 700 "$TMPDIR"
 fi
 
-# Petes customizations
+########################
+# Petes customizations #
+########################
 function svndiff {
   svn diff "$@" | colordiff | less -RFX
 }
 
-# Set homes, if set
-if [ -e ~/.paths ]; then
-    . ~/.paths
+# Set paths
+if [ -e ~/.paths.d ]; then
+    for NEW_PATH in $(cat ~/.paths.d/*); do
+        prepend_path_if_exists PATH $NEW_PATH
+    done
 fi
 
 # For machines with local home
@@ -116,3 +120,7 @@ alias mv='nocorrect mv'
 rmd () {
   pandoc $1 | lynx -stdin
 }
+
+#########################
+# /Petes customizations #
+#########################
