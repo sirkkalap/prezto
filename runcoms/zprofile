@@ -78,36 +78,39 @@ fi
 ########################
 # Petes customizations #
 ########################
+source ~/bin/utils_sirkkalap.sh
+
 function svndiff {
   svn diff "$@" | colordiff | less -RFX
 }
 
 # Set paths
 if [ -e ~/.paths.d ]; then
-    source ~/bin/utils_sirkkalap.sh
-    for NEW_PATH in $(cat ~/.paths.d/*); do
-        utils_sirkkalap::prepend_path_if_exists PATH $NEW_PATH
-    done
+  for NEW_PATH in $(cat ~/.paths.d/*); do
+    utils_sirkkalap::prepend_path_if_exists PATH $NEW_PATH
+  done
 fi
 
 # Set env
 if [ -e ~/.env.d ]; then
-    source ~/.env.d/*.sh
+  for script in $(ls ~/.env.d/*.sh); do
+    source ${script}
+  done
 fi
 
 # For machines with local home
-if [ -e ~/.zshrc.local ]; then
-    . ~/.zshrc.local
+if [[ -e ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
 fi
 
 # For shared homes
-if [ -e ~/.zshrc.$(hostname) ]; then
-    . ~/.zshrc.$(hostname)
+if [[ -e ~/.zshrc.$(hostname) ]]; then
+  source ~/.zshrc.$(hostname)
 fi
 
 # Autojump (j fofoofoo)
-if [ -s /usr/share/autojump/autojump.zsh ]; then
-    . /usr/share/autojump/autojump.zsh
+if [[ -s /usr/share/autojump/autojump.zsh ]]; then
+  source /usr/share/autojump/autojump.zsh
 else
     command -v brew >/dev/null 2>&1 && [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 fi
@@ -123,7 +126,7 @@ alias cp='nocorrect cp'
 alias mv='nocorrect mv'
 
 # http://tosbourn.com/view-markdown-files-terminal/
-rmd () {
+function rmd () {
   pandoc $1 | lynx -stdin
 }
 
