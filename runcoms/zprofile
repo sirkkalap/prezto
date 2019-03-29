@@ -84,9 +84,15 @@ function svndiff {
 
 # Set paths
 if [ -e ~/.paths.d ]; then
+    source ~/bin/utils_sirkkalap.sh
     for NEW_PATH in $(cat ~/.paths.d/*); do
-        prepend_path_if_exists PATH $NEW_PATH
+        utils_sirkkalap::prepend_path_if_exists PATH $NEW_PATH
     done
+fi
+
+# Set env
+if [ -e ~/.env.d ]; then
+    source ~/.env.d/*.sh
 fi
 
 # For machines with local home
