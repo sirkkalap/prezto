@@ -91,9 +91,9 @@ if [ -e ~/.paths.d ]; then
   done
 fi
 
-# Set env
+# set env
 if [ -e ~/.env.d ]; then
-  for script in $(ls ~/.env.d/*.sh); do
+    for script in ~/.env.d/*.sh(N); do
     source ${script}
   done
 fi
