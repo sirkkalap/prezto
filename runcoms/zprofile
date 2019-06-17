@@ -84,26 +84,38 @@ function svndiff {
   svn diff "$@" | colordiff | less -RFX
 }
 
-# Set paths
-if [ -e ~/.paths.d ]; then
-  for NEW_PATH in $(cat ~/.paths.d/*); do
-    utils_sirkkalap::prepend_path_if_exists PATH $NEW_PATH
-  done
-fi
+function setPaths()
+{
+  local new_path
+  # Set paths
+  if [[ -e ~/.paths.d ]]; then
+    for new_path in $(cat ~/.paths.d/*); do
+      utils_sirkkalap::prepend_path_if_exists PATH ${new_path}
+    done
+  fi
+}
 
-# Set env
-if [ -e ~/.env.d ]; then
-  for script in $(ls ~/.env.d/*.sh); do
-    source ${script}
-  done
-fi
+function setEnv()
+{
+  local script
+  # Set env
+  if [[ -e ~/.env.d ]]; then
+    for script in $(ls ~/.env.d/*.sh); do
+      source ${script}
+    done
+  fi
+}
+
+setPaths
+setEnv
+
 
 # For machines with local home
 if [[ -e ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
-# For shared homes
+# For machines with shared homes, use hostname to select your config
 if [[ -e ~/.zshrc.$(hostname) ]]; then
   source ~/.zshrc.$(hostname)
 fi
