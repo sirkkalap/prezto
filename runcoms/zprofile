@@ -109,6 +109,12 @@ function setEnv()
 setPaths
 setEnv
 
+# set env
+if [ -e ~/.env.d ]; then
+    for script in ~/.env.d/*.sh(N); do
+    source ${script}
+  done
+fi
 
 # For machines with local home
 if [[ -e ~/.zshrc.local ]]; then
