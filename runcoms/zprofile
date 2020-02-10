@@ -148,6 +148,12 @@ function rmd () {
   pandoc $1 | lynx -stdin
 }
 
+# Under Ubuntu Terminal text cursor went missing while moving it with cursor
+# keys.
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/171#issuecomment-140335051
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[cursor]=underline
+
 #########################
 # /Petes customizations #
 #########################
